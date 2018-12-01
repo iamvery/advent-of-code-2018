@@ -1,10 +1,17 @@
 module Example exposing (..)
 
 import Expect exposing (Expectation)
-import Fuzz exposing (Fuzzer, int, list, string)
 import Test exposing (..)
+import Calibration
 
 
 suite : Test
 suite =
-    todo "Implement our first test. See https://package.elm-lang.org/packages/elm-explorations/test/latest for how to do this!"
+    describe "calibration"
+        [ test "example 1" <|
+            \_ -> Calibration.calculate ([ 1, 1, 1 ]) |> Expect.equal 3
+        , test "example 2" <|
+            \_ -> Calibration.calculate ([ 1, 1, -2 ]) |> Expect.equal 0
+        , test "example 3" <|
+            \_ -> Calibration.calculate ([ -1, -2, -3 ]) |> Expect.equal -6
+        ]
