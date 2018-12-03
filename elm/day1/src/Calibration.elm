@@ -3,7 +3,6 @@ module Calibration exposing (..)
 import Iter
 import Iter.Extra
 import List.More
-import Set
 
 
 calculate =
