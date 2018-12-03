@@ -14,6 +14,7 @@ calibrate changes =
         |> Iter.cycle
         |> Iter.accumulate (+) 0
         |> Iter.accumulate (::) [ 0 ]
+        |> Iter.map (Debug.log "step")
         |> Iter.map List.More.duplicates
         |> Iter.Extra.dropWhile List.isEmpty
         |> Iter.take 1
@@ -22,3 +23,4 @@ calibrate changes =
         |> Maybe.withDefault []
         |> List.head
         |> Maybe.withDefault 0
+        |> Debug.log "result"
