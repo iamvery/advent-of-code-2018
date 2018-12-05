@@ -1,6 +1,7 @@
 module Calibration exposing (..)
 
-import Iter
+import Iter exposing (Iter)
+import Set exposing (Set)
 
 
 calculate =
@@ -27,7 +28,7 @@ calibrate changes =
         |> Tuple.second
 
 
-calibrate_ : ( History, Frequency ) -> Iter.Iter Frequency Changes -> ( History, Frequency )
+calibrate_ : ( History, Frequency ) -> Iter Frequency Changes -> ( History, Frequency )
 calibrate_ ( history, frequency ) changes =
     case Iter.step changes of
         ( _, Nothing ) ->
