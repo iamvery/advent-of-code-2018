@@ -23,7 +23,7 @@ calibrate changes =
         |> Tuple.second
 
 
-calibrate_ : ( Changes, Frequency ) -> Iter.Iter Frequency (List Frequency) -> ( Changes, Frequency )
+calibrate_ : ( Changes, Frequency ) -> Iter.Iter Frequency Changes -> ( Changes, Frequency )
 calibrate_ ( history, frequency ) changes =
     case Iter.step changes of
         ( _, Nothing ) ->
