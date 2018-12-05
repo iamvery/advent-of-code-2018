@@ -24,17 +24,17 @@ calibrate changes =
 
 
 calibrate_ : ( Changes, Frequency ) -> Iter.Iter Frequency (List Frequency) -> ( Changes, Frequency )
-calibrate_ ( frequencies, frequency ) changes =
+calibrate_ ( history, frequency ) changes =
     case Iter.step changes of
         ( _, Nothing ) ->
-            ( frequencies, frequency )
+            ( history, frequency )
 
         ( nextChanges, Just change ) ->
             let
                 newFrequency =
                     frequency + change
             in
-                if List.member frequency frequencies then
-                    ( frequencies, frequency )
+                if List.member frequency history then
+                    ( history, frequency )
                 else
-                    calibrate_ ( frequency :: frequencies, newFrequency ) nextChanges
+                    calibrate_ ( frequency :: history, newFrequency ) nextChanges
