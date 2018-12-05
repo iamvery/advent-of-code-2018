@@ -1,0 +1,3 @@
+import Calibration exposing (..)
+import Input exposing (..)
+calibrate input
