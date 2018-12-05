@@ -15,15 +15,19 @@ type alias Changes =
     List Frequency
 
 
+type alias History =
+    Set Frequency
+
+
 calibrate : Changes -> Frequency
 calibrate changes =
     changes
         |> Iter.cycle
-        |> calibrate_ ( [], 0 )
+        |> calibrate_ ( Set.empty, 0 )
         |> Tuple.second
 
 
-calibrate_ : ( Changes, Frequency ) -> Iter.Iter Frequency Changes -> ( Changes, Frequency )
+calibrate_ : ( History, Frequency ) -> Iter.Iter Frequency Changes -> ( History, Frequency )
 calibrate_ ( history, frequency ) changes =
     case Iter.step changes of
         ( _, Nothing ) ->
@@ -34,7 +38,7 @@ calibrate_ ( history, frequency ) changes =
                 newFrequency =
                     frequency + change
             in
-                if List.member frequency history then
+                if Set.member frequency history then
                     ( history, frequency )
                 else
-                    calibrate_ ( frequency :: history, newFrequency ) nextChanges
+                    calibrate_ ( Set.insert frequency history, newFrequency ) nextChanges
