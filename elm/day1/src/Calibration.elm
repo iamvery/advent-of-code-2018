@@ -21,11 +21,8 @@ type alias History =
 
 
 calibrate : Changes -> Frequency
-calibrate changes =
-    changes
-        |> Iter.cycle
-        |> calibrate_ ( Set.empty, 0 )
-        |> Tuple.second
+calibrate =
+    Iter.cycle >> calibrate_ ( Set.empty, 0 ) >> Tuple.second
 
 
 calibrate_ : ( History, Frequency ) -> Iter Frequency Changes -> ( History, Frequency )
