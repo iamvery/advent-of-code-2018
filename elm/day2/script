@@ -1,0 +1,3 @@
+import InventoryManagementSystem exposing (checksum)
+import Input exposing (problem)
+Debug.log "solution to day 1, part 1: " checksum problem
