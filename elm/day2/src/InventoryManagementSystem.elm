@@ -1,6 +1,7 @@
 module InventoryManagementSystem exposing (..)
 
 import List.Extra
+import EditDistance exposing (levenshteinOfStrings)
 
 
 checksum : List String -> number
@@ -52,3 +53,29 @@ measure count candidate =
             1
         else
             0
+
+
+locateSimilarIDs : List String -> List ( String, String )
+locateSimilarIDs ids =
+    pairs ids
+        |> List.filter (\( x, y ) -> levenshteinOfStrings x y == 1)
+
+
+pairs : List a -> List ( a, a )
+pairs list =
+    case list of
+        [] ->
+            []
+
+        h :: t ->
+            eachPair h t ++ pairs t
+
+
+eachPair : a -> List a -> List ( a, a )
+eachPair element list =
+    case list of
+        [] ->
+            []
+
+        h :: t ->
+            ( element, h ) :: eachPair element t

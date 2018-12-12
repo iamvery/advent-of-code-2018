@@ -30,4 +30,17 @@ suite =
             , test "group with triple" <|
                 \_ -> InventoryManagementSystem.measureDouble [ ( 'a', [ 'a', 'a' ] ) ] |> Expect.equal 0
             ]
+        , describe "locateSimilarIDs"
+            [ test "example" <|
+                \_ ->
+                    InventoryManagementSystem.locateSimilarIDs Input.ids
+                        |> Expect.equal [ ( "fghij", "fguij" ) ]
+            ]
+        , describe "pairs" <|
+            [ test "example" <|
+                \_ ->
+                    InventoryManagementSystem.pairs [ "a", "b", "c" ]
+                        |> Debug.log "pairs"
+                        |> Expect.equal [ ( "a", "b" ), ( "a", "c" ), ( "b", "c" ) ]
+            ]
         ]

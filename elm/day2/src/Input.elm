@@ -12,6 +12,17 @@ example =
     ]
 
 
+ids =
+    [ "abcde"
+    , "fghij"
+    , "klmno"
+    , "pqrst"
+    , "fguij"
+    , "axcye"
+    , "wvxyz"
+    ]
+
+
 problem =
     [ "myhposlqgeauywfikztndcvrqr"
     , "mbhposlxfeauywoikztndcvjqi"
